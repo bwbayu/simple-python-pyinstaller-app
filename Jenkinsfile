@@ -33,5 +33,18 @@ pipeline {
                 '''
             }
         }
+        stage('Manual Approval'){
+            steps{
+                input message: 'Lanjutkan ke tahap Deploy?'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh '''
+                python sources/add2vals.py 10 20
+                sleep 60
+                '''
+            }
+        }
     }
 }
